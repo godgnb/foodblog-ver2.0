@@ -1,10 +1,13 @@
 package com.blog.controller.tipboard;
 
+import java.io.PrintWriter;
 import java.sql.Timestamp;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.json.simple.JSONArray;
 
 import com.blog.controller.Action;
 import com.blog.controller.ActionForward;
@@ -33,9 +36,9 @@ public class CommentWriteAction implements Action {
 		TipBoardDao tipBoardDao = TipBoardDao.getInstance();
 		
 		// 댓글 번호 생성하는 메소드 호출
-		int renum = tipBoardDao.nextCommentNum();
+		int reNum = tipBoardDao.nextCommentNum();
 		
-		tipBoardCommentVO.setReNum(renum);
+		tipBoardCommentVO.setReNum(reNum);
 		
 		// 댓글 한개 등록하는 메소드 호출
 		tipBoardDao.insertComment(tipBoardCommentVO);
@@ -52,8 +55,7 @@ public class CommentWriteAction implements Action {
 		int startRow = (pageNum - 1) * pageSize + 1;
 		
 		// 글번호에 해당하는 댓글정보 가져오기
-		List<TipBoardCommentVO> commentList = tipBoardDao.getComments(num, startRow, pageSize);
-		
+		 List<TipBoardCommentVO> commentList = tipBoardDao.getComments(num, startRow, pageSize);
 		
 		// request 영역객체에 저장
 		request.setAttribute("commentList", commentList);
@@ -62,6 +64,9 @@ public class CommentWriteAction implements Action {
 		forward.setPath("contentForm.do?num=" + num + "&pageNum=" + pageNum);
 		forward.setRedirect(true);
 		return forward;
+		
+
+		
 	}
 
 }

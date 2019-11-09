@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.blog.dao.mapper.MemberMapper">
+
+	<select id="isIdDupCheck" resultType="int">
+		SELECT COUNT(*) FROM jspdb.member WHERE id = #{id}
+	</select>
+
+	<insert id="insertMember" parameterType="MemberVO">
+		INSERT INTO jspdb.member (id, passwd, name, phone, email, reg_date)
+		VALUES (#{id}, #{passwd}, #{name}, #{phone}, #{email}, #{regDate})
+	</insert>
+	
+	<select id="getMember" resultType="MemberVO">
+		SELECT * FROM jspdb.member WHERE id = #{id}
+	</select>
+	
+	<update id="updateMember" parameterType="MemberVO">
+		UPDATE jspdb.member SET name = #{name}, phone = #{phone}, email = #{email} WHERE id = #{id} 
+	</update>
+	
+	<delete id="deleteMember">
+		DELETE FROM jspdb.member WHERE id = #{id}
+	</delete>
+	
+	<select id="getMembers" resultType="MemberVO">
+		SELECT *
+		FROM jspdb.member
+		WHERE not id = 'admin'
+			<if test="search != null and search != ''">
+				and id LIKE CONCAT('%', #{search}, '%')
+			</if>
+		ORDER BY reg_date
+		LIMIT #{pageSize} OFFSET #{startRow}
+	</select>
+	
+	<select id="memberCount" resultType="int">
+		SELECT count(*) FROM jspdb.member WHERE NOT id = 'admin'
+			<if test="search != null and search != ''">
+				and id LIKE CONCAT('%', #{search}, '%')
+			</if>
+	</select>
+	
+	
+</mapper>

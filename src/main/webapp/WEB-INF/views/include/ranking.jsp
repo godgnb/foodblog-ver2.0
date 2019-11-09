@@ -11,7 +11,7 @@
     <div class="single-blog-post style-1 d-flex flex-wrap mb-30">
         <!-- Blog Thumbnail -->
         <div class="blog-thumbnail">
-            <img src="img/bg-img/9.jpg" alt="">
+            <img src="${pageContext.request.contextPath}/resources/img/bg-img/9.jpg" alt="">
         </div>
         <!-- Blog Content -->
         <div class="blog-content">
@@ -28,7 +28,7 @@
     <div class="single-blog-post style-1 d-flex flex-wrap mb-30">
         <!-- Blog Thumbnail -->
         <div class="blog-thumbnail">
-            <img src="img/bg-img/10.jpg" alt="">
+            <img src="${pageContext.request.contextPath}/resources/img/bg-img/10.jpg" alt="">
         </div>
         <!-- Blog Content -->
         <div class="blog-content">
@@ -45,7 +45,7 @@
     <div class="single-blog-post style-1 d-flex flex-wrap mb-30">
         <!-- Blog Thumbnail -->
         <div class="blog-thumbnail">
-            <img src="img/bg-img/11.jpg" alt="">
+            <img src="${pageContext.request.contextPath}/resources/img/bg-img/11.jpg" alt="">
         </div>
         <!-- Blog Content -->
         <div class="blog-content">
@@ -62,7 +62,7 @@
     <div class="single-blog-post style-1 d-flex flex-wrap mb-30">
         <!-- Blog Thumbnail -->
         <div class="blog-thumbnail">
-            <img src="img/bg-img/9.jpg" alt="">
+            <img src="${pageContext.request.contextPath}/resources/img/bg-img/9.jpg" alt="">
         </div>
         <!-- Blog Content -->
         <div class="blog-content">
@@ -79,7 +79,7 @@
     <div class="single-blog-post style-1 d-flex flex-wrap mb-30">
         <!-- Blog Thumbnail -->
         <div class="blog-thumbnail">
-            <img src="img/bg-img/10.jpg" alt="">
+            <img src="${pageContext.request.contextPath}/resources/img/bg-img/10.jpg" alt="">
         </div>
         <!-- Blog Content -->
         <div class="blog-content">
@@ -96,7 +96,7 @@
     <div class="single-blog-post style-1 d-flex flex-wrap mb-30">
         <!-- Blog Thumbnail -->
         <div class="blog-thumbnail">
-            <img src="img/bg-img/11.jpg" alt="">
+            <img src="${pageContext.request.contextPath}/resources/img/bg-img/11.jpg" alt="">
         </div>
         <!-- Blog Content -->
         <div class="blog-content">

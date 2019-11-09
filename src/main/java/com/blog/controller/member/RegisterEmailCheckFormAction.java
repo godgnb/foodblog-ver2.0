@@ -26,7 +26,7 @@ public class RegisterEmailCheckFormAction implements Action {
 		// SMTP 서버 연결 설정
 		email.setHostName("smtp.gmail.com");
 		email.setSmtpPort(465);
-		email.setAuthentication("godgnb123", "");
+		email.setAuthentication("godgnb123", "wynmfzqmkjrgohhb");
 		
 		// SMTP SSL, TLS 설정
 		email.setStartTLSEnabled(true);
@@ -62,6 +62,7 @@ public class RegisterEmailCheckFormAction implements Action {
 		return forward;
 	}
 	
+	// 인증번호 6자리 난수 설정
 	public String RandomNum() {
 		StringBuffer buffer = new StringBuffer();
 		for (int i = 0; i <= 5; i++) {

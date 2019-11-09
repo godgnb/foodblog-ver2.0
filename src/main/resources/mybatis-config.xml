@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<settings>
+		<setting name="mapUnderscoreToCamelCase" value="true"/>
+	</settings>
+	
+	<typeAliases>
+<!-- 		<typeAlias type="com.exam.VO.MemberVO" alias="MemberVO"/>
+		<typeAlias type="com.exam.VO.BoardVO" alias="BoardVO"/> -->
+		<package name="com.blog.vo"/>
+	</typeAliases>
+	
+	<environments default="development">
+		<environment id="development">
+			<transactionManager type="JDBC" /><!--  수동커밋:JDBC, 자동커밋:MANAGED -->
+			<dataSource type="POOLED">
+				<property name="driver" value="com.mysql.cj.jdbc.Driver" />
+				<property name="url" value="jdbc:mysql://localhost:3306/jspdb?useUnicode=true&amp;characterEncoding=utf8&amp;allowPublicKeyRetrieval=true&amp;useSSL=false&amp;serverTimezone=Asia/Seoul" />
+				<property name="username" value="admin" />
+				<property name="password" value="jsppass" />
+			</dataSource>
+		</environment>
+	</environments>
+	<mappers>
+		<!-- 매퍼로 패키지 내의 모든 인터페이스를 등록 -->
+		<package name="com.blog.dao.mapper"/>
+	</mappers>
+</configuration>

@@ -169,7 +169,7 @@ hr {
 							            <div class="comment-content d-flex" style="max-width: 20rem;">
 											<!-- Comment Meta -->
 							                <div class="comment-meta">
-							                    <div class="d-flex">
+							                    <div class="d-flex" id="comment_ajax">
 							                    	<span class="post-author" id="comment_id">${commentlist.id}</span>	
 							                    		<c:if test="${id ne commentlist.id}">
 							                    	<span class="reply" id="comment_date"><fmt:formatDate value="${commentlist.regDate}" pattern="yyyy.MM.dd HH:mm"/></span>
@@ -316,21 +316,6 @@ function idCheck() {
 	}
 }
 </script>
-<!-- <script>
-$('#rewrite').on('click', function () {
-	var name = $('#name').val();
-	var content = $('content').val();
-	var num = $('num').val();
-	
-	$.ajax({
-		url: 'commentWrite.do',
-		data:{name: name, content: content, num: num},
-		success: function (data) {
-			
-		}
-	});
-});
-</script> -->
 
 </body>
 
