@@ -52,7 +52,7 @@ public class CommentWriteAction implements Action {
 		int pageSize = 5;
 
 		// 시작행번호 구하기
-		int startRow = (pageNum - 1) * pageSize + 1;
+		int startRow = (pageNum - 1) * pageSize;
 		
 		// 글번호에 해당하는 댓글정보 가져오기
 		 List<TipBoardCommentVO> commentList = tipBoardDao.getComments(num, startRow, pageSize);

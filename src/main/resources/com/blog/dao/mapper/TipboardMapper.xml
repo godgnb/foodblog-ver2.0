@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.blog.dao.mapper.TipboardMapper">
+
+	<select id="NextTipNum" resultType="int">
+		SELECT IFNULL(MAX(num), 0) + 1 as bnum FROM tipboard
+	</select>
+
+	<insert id="insertboardTip">
+		INSERT INTO tipboard (num, id, passwd, subject, content, readcount, commcount, ip, reg_date)
+		VALUES(#{num}, #{id}, #{passwd}, #{subject}, #{content}, #{readcount}, #{commcount}, #{ip}, #{regDate})
+	</insert>
+	
+	<select id="getBoards" resultType="TipBoardVO">
+		SELECT *
+		FROM tipboard
+			<if test="search != null and search != ''">
+				WHERE subject LIKE CONCAT('%', #{search}, '%')	
+			</if>
+		ORDER BY num DESC
+		LIMIT #{pageSize} OFFSET #{startRow}
+	</select>
+	
+	<select id="getBoardCount" resultType="int">
+		SELECT count(*) FROM tipboard
+			<if test="search != null and search != ''">
+				WHERE subject LIKE CONCAT('%', #{search}, '%')	
+			</if>
+	</select>
+	
+	<update id="updateReadCount">
+		UPDATE tipboard
+		SET readcount = readcount + 1
+		WHERE num = #{num}
+	</update>
+	
+	
+	<select id="getboardTip" resultType="TipBoardVO">
+		SELECT * FROM tipboard WHERE num = #{num}
+	</select>
+	
+	<select id="isPasswdEqual" resultType="int">
+		SELECT count(*)
+		FROM tipboard
+		WHERE num = #{num} AND passwd = #{passwd}
+	</select>
+	
+	<update id="updateBoard">
+		UPDATE tipboard
+		SET subject = #{subject}, content = #{content}
+		WHERE num = #{num}
+	</update>
+	
+	<delete id="deleteBoard">
+		DELETE FROM tipboard WHERE num = #{num}
+	</delete>
+	
+	<!-- =================== 게시글 댓글 작업 ================  -->
+	
+	<select id="nextCommentNum" resultType="int">
+		SELECT IFNULL(MAX(re_num), 0) + 1 as bnum FROM tipboardcomment
+	</select>
+	
+	<insert id="insertComment">
+		INSERT INTO tipboardcomment (re_num, id, content, reg_date, num)
+		VALUES (#{reNum}, #{id}, #{content}, #{regDate}, #{num})
+	</insert>
+	
+	<select id="getComments" resultType="TipBoardCommentVO">
+		SELECT *
+		FROM tipboardcomment
+		WHERE num = #{num}
+		ORDER BY re_num
+		LIMIT #{pageSize} OFFSET #{startRow}
+	</select>
+	
+	<update id="commCountUp">
+		UPDATE tipboard
+		SET commcount = commcount + 1
+		WHERE num = #{num}
+	</update>
+	
+	<update id="commCountDown">
+		UPDATE tipboard
+		SET commcount = commcount - 1
+		WHERE num = #{num}
+	</update>
+	
+	<delete id="deleteComment">
+		DELETE FROM tipboardcomment WHERE re_num = #{reNum}
+	</delete>
+	
+	<select id="getComment" resultType="TipBoardCommentVO">
+		SELECT * FROM tipboardcomment WHERE re_num = #{reNum}
+	</select>
+	
+	<update id="editComment">
+		UPDATE tipboardcomment
+		SET content = #{content}
+		WHERE re_num = #{reNum}
+	</update>
+	
+	<select id="getCommentCount" resultType="int">
+		SELECT COUNT(*) FROM tipboardcomment WHERE num = #{num}
+	</select>
+	
+</mapper>

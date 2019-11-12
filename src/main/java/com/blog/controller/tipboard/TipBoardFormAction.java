@@ -40,7 +40,7 @@ public class TipBoardFormAction implements Action {
 		int pageSize = 10;
 
 		// 시작행번호 구하기
-		int startRow = (pageNum - 1) * pageSize + 1;
+		int startRow = (pageNum - 1) * pageSize;
 
 		// 글목록 가져오기 메소드 호출
 		List<TipBoardVO> tipboardList = tipBoardDao.getBoards(startRow, pageSize, search);
